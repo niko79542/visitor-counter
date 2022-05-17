@@ -1,1 +1,3 @@
-sls deploy
+sls deploy 
+
+.
