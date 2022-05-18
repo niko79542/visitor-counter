@@ -1,4 +1,3 @@
-# A utility function to convert a dict into DynamoDB object
 def to_item(raw):
     if type(raw) is dict:
         resp = {}
@@ -33,7 +32,6 @@ def to_item(raw):
             'N': str(raw)
         }
 
-# A utility function to convert a DynamoDB object into a dict(json)
 def to_dict(raw):
     if type(raw) is dict:
         resp = {}

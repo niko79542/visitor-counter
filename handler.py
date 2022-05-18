@@ -31,6 +31,11 @@ def create(event, context):
     if res['ResponseMetadata']['HTTPStatusCode'] == 200:
         response = {
             "statusCode": 201,
+            'headers': {
+                'Access-Control-Allow-Headers': 'Content-Type',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'OPTIONS,POST'
+            },
         }
 
     return response
@@ -54,6 +59,11 @@ def get(event, context):
         logger.info(f'Post is: {post}')
         response = {
             "statusCode": 200,
+            'headers': {
+                'Access-Control-Allow-Headers': 'Content-Type',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'OPTIONS,GET'
+            },
             "body": json.dumps(dynamo.to_dict(post))
         }
 
@@ -61,6 +71,8 @@ def get(event, context):
 
 
 def all(event, context):
+    logger.info(f'Incoming request is: {event}')
+
     # Set the default error response
     response = {
         "statusCode": 500,
@@ -76,6 +88,11 @@ def all(event, context):
 
     response = {
         "statusCode": 200,
+        'headers': {
+            'Access-Control-Allow-Headers': 'Content-Type',
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'OPTIONS,GET'
+        },
         "body": json.dumps(posts)
     }
 
@@ -87,7 +104,6 @@ def update(event, context):
 
     post_id = event['pathParameters']['postId']
 
-    # Set the default error response
     response = {
         "statusCode": 500,
         "body": f"An error occured while updating post {post_id}"

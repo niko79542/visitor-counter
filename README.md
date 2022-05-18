@@ -1,3 +1,2 @@
 sls deploy 
 
-.
