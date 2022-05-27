@@ -52,8 +52,3 @@ resources:
   
 plugins:
 - serverless-python-requirements
-- serverless-sam
-
-custom:
-  pythonRequirements:
-    dockerizePip: non-linux
