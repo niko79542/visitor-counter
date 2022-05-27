@@ -150,7 +150,7 @@
                     "dynamodb:UpdateItem",
                     "dynamodb:DeleteItem"
                   ],
-                  "Resource": "arn:aws:dynamodb:*:*:table/*"
+                  "Resource": "arn:aws:dynamodb:us-west-1:797377682706:table/views"
                 }
               ]
             }
@@ -179,7 +179,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/views-api/dev/1653675925310-2022-05-27T18:25:25.310Z/views-api.zip"
+          "S3Key": "serverless/views-api/dev/1653677115438-2022-05-27T18:45:15.438Z/views-api.zip"
         },
         "Handler": "handler.get",
         "Runtime": "python3.8",
@@ -204,7 +204,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/views-api/dev/1653675925310-2022-05-27T18:25:25.310Z/views-api.zip"
+          "S3Key": "serverless/views-api/dev/1653677115438-2022-05-27T18:45:15.438Z/views-api.zip"
         },
         "Handler": "handler.update",
         "Runtime": "python3.8",
@@ -222,24 +222,24 @@
         "UpdateLogGroup"
       ]
     },
-    "GetLambdaVersion64tgzmVE8oCj4DiSxC2JO6hX4tloZy0MA1pbnho": {
+    "GetLambdaVersionUn8i8SGM4wPL64MO7J9dMOknwlp0RWRfZsXLios": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "GetLambdaFunction"
         },
-        "CodeSha256": "XU6jM5li+oLymxlpNmbjo1Q+1OyE71/JGFoxqTgkZCo="
+        "CodeSha256": "kBk1VE6zAppcoDW+GUiDwxKaGBNTYkHHBv0rikng1Us="
       }
     },
-    "UpdateLambdaVersionBVObo5Mgwd7wXm7OgFBpkhlxGyg2ie1uFxMwXxod4": {
+    "UpdateLambdaVersionwNYyPvxeXIRYc7EFpsaOWEvQyTNGhNocK5635BKj8": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "UpdateLambdaFunction"
         },
-        "CodeSha256": "XU6jM5li+oLymxlpNmbjo1Q+1OyE71/JGFoxqTgkZCo="
+        "CodeSha256": "kBk1VE6zAppcoDW+GUiDwxKaGBNTYkHHBv0rikng1Us="
       }
     },
     "ApiGatewayRestApi": {
@@ -376,7 +376,7 @@
         "UpdateLambdaPermissionApiGateway"
       ]
     },
-    "ApiGatewayDeployment1653675909163": {
+    "ApiGatewayDeployment1653677099267": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -498,7 +498,7 @@
     "GetLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "GetLambdaVersion64tgzmVE8oCj4DiSxC2JO6hX4tloZy0MA1pbnho"
+        "Ref": "GetLambdaVersionUn8i8SGM4wPL64MO7J9dMOknwlp0RWRfZsXLios"
       },
       "Export": {
         "Name": "sls-views-api-dev-GetLambdaFunctionQualifiedArn"
@@ -507,7 +507,7 @@
     "UpdateLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "UpdateLambdaVersionBVObo5Mgwd7wXm7OgFBpkhlxGyg2ie1uFxMwXxod4"
+        "Ref": "UpdateLambdaVersionwNYyPvxeXIRYc7EFpsaOWEvQyTNGhNocK5635BKj8"
       },
       "Export": {
         "Name": "sls-views-api-dev-UpdateLambdaFunctionQualifiedArn"
