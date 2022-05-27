@@ -1,8 +1,8 @@
 {
   "service": {
-    "service": "post-api",
+    "service": "views-api",
     "serviceObject": {
-      "name": "post-api"
+      "name": "views-api"
     },
     "provider": {
       "name": "aws",
@@ -97,34 +97,16 @@
               }
             }
           },
-          "CreateLogGroup": {
-            "Type": "AWS::Logs::LogGroup",
-            "Properties": {
-              "LogGroupName": "/aws/lambda/post-api-dev-create"
-            }
-          },
           "GetLogGroup": {
             "Type": "AWS::Logs::LogGroup",
             "Properties": {
-              "LogGroupName": "/aws/lambda/post-api-dev-get"
-            }
-          },
-          "AllLogGroup": {
-            "Type": "AWS::Logs::LogGroup",
-            "Properties": {
-              "LogGroupName": "/aws/lambda/post-api-dev-all"
+              "LogGroupName": "/aws/lambda/views-api-dev-get"
             }
           },
           "UpdateLogGroup": {
             "Type": "AWS::Logs::LogGroup",
             "Properties": {
-              "LogGroupName": "/aws/lambda/post-api-dev-update"
-            }
-          },
-          "DeleteLogGroup": {
-            "Type": "AWS::Logs::LogGroup",
-            "Properties": {
-              "LogGroupName": "/aws/lambda/post-api-dev-delete"
+              "LogGroupName": "/aws/lambda/views-api-dev-update"
             }
           },
           "IamRoleLambdaExecution": {
@@ -152,7 +134,7 @@
                     "Fn::Join": [
                       "-",
                       [
-                        "post-api",
+                        "views-api",
                         "dev",
                         "lambda"
                       ]
@@ -169,7 +151,7 @@
                         ],
                         "Resource": [
                           {
-                            "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/post-api-dev*:*"
+                            "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/views-api-dev*:*"
                           }
                         ]
                       },
@@ -180,7 +162,7 @@
                         ],
                         "Resource": [
                           {
-                            "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/post-api-dev*:*:*"
+                            "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/views-api-dev*:*:*"
                           }
                         ]
                       },
@@ -196,7 +178,7 @@
                 "Fn::Join": [
                   "-",
                   [
-                    "post-api",
+                    "views-api",
                     "dev",
                     {
                       "Ref": "AWS::Region"
@@ -207,31 +189,6 @@
               }
             }
           },
-          "CreateLambdaFunction": {
-            "Type": "AWS::Lambda::Function",
-            "Properties": {
-              "Code": {
-                "S3Bucket": {
-                  "Ref": "ServerlessDeploymentBucket"
-                },
-                "S3Key": "serverless/post-api/dev/1652808330654-2022-05-17T17:25:30.654Z/post-api.zip"
-              },
-              "Handler": "handler.create",
-              "Runtime": "python3.8",
-              "FunctionName": "post-api-dev-create",
-              "MemorySize": 1024,
-              "Timeout": 6,
-              "Role": {
-                "Fn::GetAtt": [
-                  "IamRoleLambdaExecution",
-                  "Arn"
-                ]
-              }
-            },
-            "DependsOn": [
-              "CreateLogGroup"
-            ]
-          },
           "GetLambdaFunction": {
             "Type": "AWS::Lambda::Function",
             "Properties": {
@@ -239,11 +196,11 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/post-api/dev/1652808330654-2022-05-17T17:25:30.654Z/post-api.zip"
+                "S3Key": "serverless/views-api/dev/1653612672696-2022-05-27T00:51:12.696Z/views-api.zip"
               },
               "Handler": "handler.get",
               "Runtime": "python3.8",
-              "FunctionName": "post-api-dev-get",
+              "FunctionName": "views-api-dev-get",
               "MemorySize": 1024,
               "Timeout": 6,
               "Role": {
@@ -257,31 +214,6 @@
               "GetLogGroup"
             ]
           },
-          "AllLambdaFunction": {
-            "Type": "AWS::Lambda::Function",
-            "Properties": {
-              "Code": {
-                "S3Bucket": {
-                  "Ref": "ServerlessDeploymentBucket"
-                },
-                "S3Key": "serverless/post-api/dev/1652808330654-2022-05-17T17:25:30.654Z/post-api.zip"
-              },
-              "Handler": "handler.all",
-              "Runtime": "python3.8",
-              "FunctionName": "post-api-dev-all",
-              "MemorySize": 1024,
-              "Timeout": 6,
-              "Role": {
-                "Fn::GetAtt": [
-                  "IamRoleLambdaExecution",
-                  "Arn"
-                ]
-              }
-            },
-            "DependsOn": [
-              "AllLogGroup"
-            ]
-          },
           "UpdateLambdaFunction": {
             "Type": "AWS::Lambda::Function",
             "Properties": {
@@ -289,11 +221,11 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/post-api/dev/1652808330654-2022-05-17T17:25:30.654Z/post-api.zip"
+                "S3Key": "serverless/views-api/dev/1653612672696-2022-05-27T00:51:12.696Z/views-api.zip"
               },
               "Handler": "handler.update",
               "Runtime": "python3.8",
-              "FunctionName": "post-api-dev-update",
+              "FunctionName": "views-api-dev-update",
               "MemorySize": 1024,
               "Timeout": 6,
               "Role": {
@@ -307,85 +239,30 @@
               "UpdateLogGroup"
             ]
           },
-          "DeleteLambdaFunction": {
-            "Type": "AWS::Lambda::Function",
-            "Properties": {
-              "Code": {
-                "S3Bucket": {
-                  "Ref": "ServerlessDeploymentBucket"
-                },
-                "S3Key": "serverless/post-api/dev/1652808330654-2022-05-17T17:25:30.654Z/post-api.zip"
-              },
-              "Handler": "handler.delete",
-              "Runtime": "python3.8",
-              "FunctionName": "post-api-dev-delete",
-              "MemorySize": 1024,
-              "Timeout": 6,
-              "Role": {
-                "Fn::GetAtt": [
-                  "IamRoleLambdaExecution",
-                  "Arn"
-                ]
-              }
-            },
-            "DependsOn": [
-              "DeleteLogGroup"
-            ]
-          },
-          "CreateLambdaVersionH3hyb6t4fn0sJFBeO1SC5wsTnuHAC9gxYpEeFgah0": {
-            "Type": "AWS::Lambda::Version",
-            "DeletionPolicy": "Retain",
-            "Properties": {
-              "FunctionName": {
-                "Ref": "CreateLambdaFunction"
-              },
-              "CodeSha256": "WKNeQ9Kif0LEOnRTZr0Ne0NLxds2Olw4L2OSiRSr5vU="
-            }
-          },
-          "GetLambdaVersionmZwE3pPuI7tZvuShfm7S7WNR4sx8pjhmLZ7tQH80xQ": {
+          "GetLambdaVersion64tgzmVE8oCj4DiSxC2JO6hX4tloZy0MA1pbnho": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "GetLambdaFunction"
               },
-              "CodeSha256": "WKNeQ9Kif0LEOnRTZr0Ne0NLxds2Olw4L2OSiRSr5vU="
+              "CodeSha256": "XU6jM5li+oLymxlpNmbjo1Q+1OyE71/JGFoxqTgkZCo="
             }
           },
-          "AllLambdaVersionDLjNMKghpA3sM2gZe8A6TRU7cTCJNiKw53f6GQSTE": {
-            "Type": "AWS::Lambda::Version",
-            "DeletionPolicy": "Retain",
-            "Properties": {
-              "FunctionName": {
-                "Ref": "AllLambdaFunction"
-              },
-              "CodeSha256": "WKNeQ9Kif0LEOnRTZr0Ne0NLxds2Olw4L2OSiRSr5vU="
-            }
-          },
-          "UpdateLambdaVersionknV943BxYDwfN7mSbGmzYrVoWLkiOKVmNmvfmDP8DE": {
+          "UpdateLambdaVersionBVObo5Mgwd7wXm7OgFBpkhlxGyg2ie1uFxMwXxod4": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "UpdateLambdaFunction"
               },
-              "CodeSha256": "WKNeQ9Kif0LEOnRTZr0Ne0NLxds2Olw4L2OSiRSr5vU="
-            }
-          },
-          "DeleteLambdaVersionTiAhdzyk2CHz5jy61f2oxY705LTKd8zIt6qIVM3b7R8": {
-            "Type": "AWS::Lambda::Version",
-            "DeletionPolicy": "Retain",
-            "Properties": {
-              "FunctionName": {
-                "Ref": "DeleteLambdaFunction"
-              },
-              "CodeSha256": "WKNeQ9Kif0LEOnRTZr0Ne0NLxds2Olw4L2OSiRSr5vU="
+              "CodeSha256": "XU6jM5li+oLymxlpNmbjo1Q+1OyE71/JGFoxqTgkZCo="
             }
           },
           "ApiGatewayRestApi": {
             "Type": "AWS::ApiGateway::RestApi",
             "Properties": {
-              "Name": "dev-post-api",
+              "Name": "dev-views-api",
               "EndpointConfiguration": {
                 "Types": [
                   "EDGE"
@@ -394,7 +271,7 @@
               "Policy": ""
             }
           },
-          "ApiGatewayResourcePosts": {
+          "ApiGatewayResourceGetviews": {
             "Type": "AWS::ApiGateway::Resource",
             "Properties": {
               "ParentId": {
@@ -403,125 +280,34 @@
                   "RootResourceId"
                 ]
               },
-              "PathPart": "posts",
+              "PathPart": "get_views",
               "RestApiId": {
                 "Ref": "ApiGatewayRestApi"
               }
             }
           },
-          "ApiGatewayResourcePostsCreate": {
+          "ApiGatewayResourcePutview": {
             "Type": "AWS::ApiGateway::Resource",
             "Properties": {
               "ParentId": {
-                "Ref": "ApiGatewayResourcePosts"
+                "Fn::GetAtt": [
+                  "ApiGatewayRestApi",
+                  "RootResourceId"
+                ]
               },
-              "PathPart": "create",
+              "PathPart": "put_view",
               "RestApiId": {
                 "Ref": "ApiGatewayRestApi"
               }
             }
           },
-          "ApiGatewayResourcePostsGet": {
-            "Type": "AWS::ApiGateway::Resource",
-            "Properties": {
-              "ParentId": {
-                "Ref": "ApiGatewayResourcePosts"
-              },
-              "PathPart": "get",
-              "RestApiId": {
-                "Ref": "ApiGatewayRestApi"
-              }
-            }
-          },
-          "ApiGatewayResourcePostsAll": {
-            "Type": "AWS::ApiGateway::Resource",
-            "Properties": {
-              "ParentId": {
-                "Ref": "ApiGatewayResourcePosts"
-              },
-              "PathPart": "all",
-              "RestApiId": {
-                "Ref": "ApiGatewayRestApi"
-              }
-            }
-          },
-          "ApiGatewayResourcePostsUpdate": {
-            "Type": "AWS::ApiGateway::Resource",
-            "Properties": {
-              "ParentId": {
-                "Ref": "ApiGatewayResourcePosts"
-              },
-              "PathPart": "update",
-              "RestApiId": {
-                "Ref": "ApiGatewayRestApi"
-              }
-            }
-          },
-          "ApiGatewayResourcePostsDelete": {
-            "Type": "AWS::ApiGateway::Resource",
-            "Properties": {
-              "ParentId": {
-                "Ref": "ApiGatewayResourcePosts"
-              },
-              "PathPart": "delete",
-              "RestApiId": {
-                "Ref": "ApiGatewayRestApi"
-              }
-            }
-          },
-          "ApiGatewayMethodPostsCreatePost": {
-            "Type": "AWS::ApiGateway::Method",
-            "Properties": {
-              "HttpMethod": "POST",
-              "RequestParameters": {},
-              "ResourceId": {
-                "Ref": "ApiGatewayResourcePostsCreate"
-              },
-              "RestApiId": {
-                "Ref": "ApiGatewayRestApi"
-              },
-              "ApiKeyRequired": false,
-              "AuthorizationType": "NONE",
-              "Integration": {
-                "IntegrationHttpMethod": "POST",
-                "Type": "AWS_PROXY",
-                "Uri": {
-                  "Fn::Join": [
-                    "",
-                    [
-                      "arn:",
-                      {
-                        "Ref": "AWS::Partition"
-                      },
-                      ":apigateway:",
-                      {
-                        "Ref": "AWS::Region"
-                      },
-                      ":lambda:path/2015-03-31/functions/",
-                      {
-                        "Fn::GetAtt": [
-                          "CreateLambdaFunction",
-                          "Arn"
-                        ]
-                      },
-                      "/invocations"
-                    ]
-                  ]
-                }
-              },
-              "MethodResponses": []
-            },
-            "DependsOn": [
-              "CreateLambdaPermissionApiGateway"
-            ]
-          },
-          "ApiGatewayMethodPostsGetGet": {
+          "ApiGatewayMethodGetviewsGet": {
             "Type": "AWS::ApiGateway::Method",
             "Properties": {
               "HttpMethod": "GET",
               "RequestParameters": {},
               "ResourceId": {
-                "Ref": "ApiGatewayResourcePostsGet"
+                "Ref": "ApiGatewayResourceGetviews"
               },
               "RestApiId": {
                 "Ref": "ApiGatewayRestApi"
@@ -561,59 +347,13 @@
               "GetLambdaPermissionApiGateway"
             ]
           },
-          "ApiGatewayMethodPostsAllGet": {
-            "Type": "AWS::ApiGateway::Method",
-            "Properties": {
-              "HttpMethod": "GET",
-              "RequestParameters": {},
-              "ResourceId": {
-                "Ref": "ApiGatewayResourcePostsAll"
-              },
-              "RestApiId": {
-                "Ref": "ApiGatewayRestApi"
-              },
-              "ApiKeyRequired": false,
-              "AuthorizationType": "NONE",
-              "Integration": {
-                "IntegrationHttpMethod": "POST",
-                "Type": "AWS_PROXY",
-                "Uri": {
-                  "Fn::Join": [
-                    "",
-                    [
-                      "arn:",
-                      {
-                        "Ref": "AWS::Partition"
-                      },
-                      ":apigateway:",
-                      {
-                        "Ref": "AWS::Region"
-                      },
-                      ":lambda:path/2015-03-31/functions/",
-                      {
-                        "Fn::GetAtt": [
-                          "AllLambdaFunction",
-                          "Arn"
-                        ]
-                      },
-                      "/invocations"
-                    ]
-                  ]
-                }
-              },
-              "MethodResponses": []
-            },
-            "DependsOn": [
-              "AllLambdaPermissionApiGateway"
-            ]
-          },
-          "ApiGatewayMethodPostsUpdatePut": {
+          "ApiGatewayMethodPutviewPut": {
             "Type": "AWS::ApiGateway::Method",
             "Properties": {
               "HttpMethod": "PUT",
               "RequestParameters": {},
               "ResourceId": {
-                "Ref": "ApiGatewayResourcePostsUpdate"
+                "Ref": "ApiGatewayResourcePutview"
               },
               "RestApiId": {
                 "Ref": "ApiGatewayRestApi"
@@ -653,53 +393,7 @@
               "UpdateLambdaPermissionApiGateway"
             ]
           },
-          "ApiGatewayMethodPostsDeleteDelete": {
-            "Type": "AWS::ApiGateway::Method",
-            "Properties": {
-              "HttpMethod": "DELETE",
-              "RequestParameters": {},
-              "ResourceId": {
-                "Ref": "ApiGatewayResourcePostsDelete"
-              },
-              "RestApiId": {
-                "Ref": "ApiGatewayRestApi"
-              },
-              "ApiKeyRequired": false,
-              "AuthorizationType": "NONE",
-              "Integration": {
-                "IntegrationHttpMethod": "POST",
-                "Type": "AWS_PROXY",
-                "Uri": {
-                  "Fn::Join": [
-                    "",
-                    [
-                      "arn:",
-                      {
-                        "Ref": "AWS::Partition"
-                      },
-                      ":apigateway:",
-                      {
-                        "Ref": "AWS::Region"
-                      },
-                      ":lambda:path/2015-03-31/functions/",
-                      {
-                        "Fn::GetAtt": [
-                          "DeleteLambdaFunction",
-                          "Arn"
-                        ]
-                      },
-                      "/invocations"
-                    ]
-                  ]
-                }
-              },
-              "MethodResponses": []
-            },
-            "DependsOn": [
-              "DeleteLambdaPermissionApiGateway"
-            ]
-          },
-          "ApiGatewayDeployment1652808307365": {
+          "ApiGatewayDeployment1653612657139": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -708,49 +402,9 @@
               "StageName": "dev"
             },
             "DependsOn": [
-              "ApiGatewayMethodPostsCreatePost",
-              "ApiGatewayMethodPostsGetGet",
-              "ApiGatewayMethodPostsAllGet",
-              "ApiGatewayMethodPostsUpdatePut",
-              "ApiGatewayMethodPostsDeleteDelete"
+              "ApiGatewayMethodGetviewsGet",
+              "ApiGatewayMethodPutviewPut"
             ]
-          },
-          "CreateLambdaPermissionApiGateway": {
-            "Type": "AWS::Lambda::Permission",
-            "Properties": {
-              "FunctionName": {
-                "Fn::GetAtt": [
-                  "CreateLambdaFunction",
-                  "Arn"
-                ]
-              },
-              "Action": "lambda:InvokeFunction",
-              "Principal": "apigateway.amazonaws.com",
-              "SourceArn": {
-                "Fn::Join": [
-                  "",
-                  [
-                    "arn:",
-                    {
-                      "Ref": "AWS::Partition"
-                    },
-                    ":execute-api:",
-                    {
-                      "Ref": "AWS::Region"
-                    },
-                    ":",
-                    {
-                      "Ref": "AWS::AccountId"
-                    },
-                    ":",
-                    {
-                      "Ref": "ApiGatewayRestApi"
-                    },
-                    "/*/*"
-                  ]
-                ]
-              }
-            }
           },
           "GetLambdaPermissionApiGateway": {
             "Type": "AWS::Lambda::Permission",
@@ -758,43 +412,6 @@
               "FunctionName": {
                 "Fn::GetAtt": [
                   "GetLambdaFunction",
-                  "Arn"
-                ]
-              },
-              "Action": "lambda:InvokeFunction",
-              "Principal": "apigateway.amazonaws.com",
-              "SourceArn": {
-                "Fn::Join": [
-                  "",
-                  [
-                    "arn:",
-                    {
-                      "Ref": "AWS::Partition"
-                    },
-                    ":execute-api:",
-                    {
-                      "Ref": "AWS::Region"
-                    },
-                    ":",
-                    {
-                      "Ref": "AWS::AccountId"
-                    },
-                    ":",
-                    {
-                      "Ref": "ApiGatewayRestApi"
-                    },
-                    "/*/*"
-                  ]
-                ]
-              }
-            }
-          },
-          "AllLambdaPermissionApiGateway": {
-            "Type": "AWS::Lambda::Permission",
-            "Properties": {
-              "FunctionName": {
-                "Fn::GetAtt": [
-                  "AllLambdaFunction",
                   "Arn"
                 ]
               },
@@ -863,47 +480,10 @@
               }
             }
           },
-          "DeleteLambdaPermissionApiGateway": {
-            "Type": "AWS::Lambda::Permission",
-            "Properties": {
-              "FunctionName": {
-                "Fn::GetAtt": [
-                  "DeleteLambdaFunction",
-                  "Arn"
-                ]
-              },
-              "Action": "lambda:InvokeFunction",
-              "Principal": "apigateway.amazonaws.com",
-              "SourceArn": {
-                "Fn::Join": [
-                  "",
-                  [
-                    "arn:",
-                    {
-                      "Ref": "AWS::Partition"
-                    },
-                    ":execute-api:",
-                    {
-                      "Ref": "AWS::Region"
-                    },
-                    ":",
-                    {
-                      "Ref": "AWS::AccountId"
-                    },
-                    ":",
-                    {
-                      "Ref": "ApiGatewayRestApi"
-                    },
-                    "/*/*"
-                  ]
-                ]
-              }
-            }
-          },
-          "postsTable": {
+          "viewsTable": {
             "Type": "AWS::DynamoDB::Table",
             "Properties": {
-              "TableName": "posts",
+              "TableName": "views",
               "AttributeDefinitions": [
                 {
                   "AttributeName": "id",
@@ -929,52 +509,25 @@
               "Ref": "ServerlessDeploymentBucket"
             },
             "Export": {
-              "Name": "sls-post-api-dev-ServerlessDeploymentBucketName"
-            }
-          },
-          "CreateLambdaFunctionQualifiedArn": {
-            "Description": "Current Lambda function version",
-            "Value": {
-              "Ref": "CreateLambdaVersionH3hyb6t4fn0sJFBeO1SC5wsTnuHAC9gxYpEeFgah0"
-            },
-            "Export": {
-              "Name": "sls-post-api-dev-CreateLambdaFunctionQualifiedArn"
+              "Name": "sls-views-api-dev-ServerlessDeploymentBucketName"
             }
           },
           "GetLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "GetLambdaVersionmZwE3pPuI7tZvuShfm7S7WNR4sx8pjhmLZ7tQH80xQ"
+              "Ref": "GetLambdaVersion64tgzmVE8oCj4DiSxC2JO6hX4tloZy0MA1pbnho"
             },
             "Export": {
-              "Name": "sls-post-api-dev-GetLambdaFunctionQualifiedArn"
-            }
-          },
-          "AllLambdaFunctionQualifiedArn": {
-            "Description": "Current Lambda function version",
-            "Value": {
-              "Ref": "AllLambdaVersionDLjNMKghpA3sM2gZe8A6TRU7cTCJNiKw53f6GQSTE"
-            },
-            "Export": {
-              "Name": "sls-post-api-dev-AllLambdaFunctionQualifiedArn"
+              "Name": "sls-views-api-dev-GetLambdaFunctionQualifiedArn"
             }
           },
           "UpdateLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "UpdateLambdaVersionknV943BxYDwfN7mSbGmzYrVoWLkiOKVmNmvfmDP8DE"
+              "Ref": "UpdateLambdaVersionBVObo5Mgwd7wXm7OgFBpkhlxGyg2ie1uFxMwXxod4"
             },
             "Export": {
-              "Name": "sls-post-api-dev-UpdateLambdaFunctionQualifiedArn"
-            }
-          },
-          "DeleteLambdaFunctionQualifiedArn": {
-            "Description": "Current Lambda function version",
-            "Value": {
-              "Ref": "DeleteLambdaVersionTiAhdzyk2CHz5jy61f2oxY705LTKd8zIt6qIVM3b7R8"
-            },
-            "Export": {
-              "Name": "sls-post-api-dev-DeleteLambdaFunctionQualifiedArn"
+              "Name": "sls-views-api-dev-UpdateLambdaFunctionQualifiedArn"
             }
           },
           "ServiceEndpoint": {
@@ -1000,7 +553,7 @@
               ]
             },
             "Export": {
-              "Name": "sls-post-api-dev-ServiceEndpoint"
+              "Name": "sls-views-api-dev-ServiceEndpoint"
             }
           }
         }
@@ -1095,112 +648,56 @@
       }
     },
     "plugins": [
-      "serverless-python-requirements"
+      "serverless-python-requirements",
+      "serverless-sam"
     ],
     "pluginsData": {},
     "functions": {
-      "create": {
-        "handler": "handler.create",
-        "events": [
-          {
-            "http": {
-              "path": "posts/create",
-              "method": "post",
-              "integration": "AWS_PROXY"
-            }
-          }
-        ],
-        "name": "post-api-dev-create",
-        "package": {},
-        "memory": 1024,
-        "timeout": 6,
-        "runtime": "python3.8",
-        "vpc": {},
-        "versionLogicalId": "CreateLambdaVersionH3hyb6t4fn0sJFBeO1SC5wsTnuHAC9gxYpEeFgah0"
-      },
       "get": {
         "handler": "handler.get",
         "events": [
           {
             "http": {
-              "path": "posts/get",
+              "path": "get_views",
               "method": "get",
               "integration": "AWS_PROXY"
             }
           }
         ],
-        "name": "post-api-dev-get",
+        "name": "views-api-dev-get",
         "package": {},
         "memory": 1024,
         "timeout": 6,
         "runtime": "python3.8",
         "vpc": {},
-        "versionLogicalId": "GetLambdaVersionmZwE3pPuI7tZvuShfm7S7WNR4sx8pjhmLZ7tQH80xQ"
-      },
-      "all": {
-        "handler": "handler.all",
-        "events": [
-          {
-            "http": {
-              "path": "posts/all",
-              "method": "get",
-              "integration": "AWS_PROXY"
-            }
-          }
-        ],
-        "name": "post-api-dev-all",
-        "package": {},
-        "memory": 1024,
-        "timeout": 6,
-        "runtime": "python3.8",
-        "vpc": {},
-        "versionLogicalId": "AllLambdaVersionDLjNMKghpA3sM2gZe8A6TRU7cTCJNiKw53f6GQSTE"
+        "versionLogicalId": "GetLambdaVersion64tgzmVE8oCj4DiSxC2JO6hX4tloZy0MA1pbnho"
       },
       "update": {
         "handler": "handler.update",
         "events": [
           {
             "http": {
-              "path": "posts/update",
+              "path": "put_view",
               "method": "put",
               "integration": "AWS_PROXY"
             }
           }
         ],
-        "name": "post-api-dev-update",
+        "name": "views-api-dev-update",
         "package": {},
         "memory": 1024,
         "timeout": 6,
         "runtime": "python3.8",
         "vpc": {},
-        "versionLogicalId": "UpdateLambdaVersionknV943BxYDwfN7mSbGmzYrVoWLkiOKVmNmvfmDP8DE"
-      },
-      "delete": {
-        "handler": "handler.delete",
-        "events": [
-          {
-            "http": {
-              "path": "posts/delete",
-              "method": "delete",
-              "integration": "AWS_PROXY"
-            }
-          }
-        ],
-        "name": "post-api-dev-delete",
-        "package": {},
-        "memory": 1024,
-        "timeout": 6,
-        "runtime": "python3.8",
-        "vpc": {},
-        "versionLogicalId": "DeleteLambdaVersionTiAhdzyk2CHz5jy61f2oxY705LTKd8zIt6qIVM3b7R8"
+        "versionLogicalId": "UpdateLambdaVersionBVObo5Mgwd7wXm7OgFBpkhlxGyg2ie1uFxMwXxod4"
       }
     },
     "resources": {
       "Resources": {
-        "postsTable": {
+        "viewsTable": {
           "Type": "AWS::DynamoDB::Table",
           "Properties": {
-            "TableName": "posts",
+            "TableName": "views",
             "AttributeDefinitions": [
               {
                 "AttributeName": "id",
@@ -1225,7 +722,7 @@
     "configValidationMode": "warn",
     "serviceFilename": "serverless.yml",
     "initialServerlessConfig": {
-      "service": "post-api",
+      "service": "views-api",
       "provider": {
         "$ref": "$[\"service\"][\"provider\"]"
       },
@@ -1234,9 +731,9 @@
           "node_modules/**",
           "venv/**"
         ],
-        "artifactsS3KeyDirname": "serverless/post-api/dev/code-artifacts",
-        "artifact": "/home/niko/Documents/post-api/.serverless/post-api.zip",
-        "artifactDirectoryName": "serverless/post-api/dev/1652808330654-2022-05-17T17:25:30.654Z"
+        "artifactsS3KeyDirname": "serverless/views-api/dev/code-artifacts",
+        "artifact": "/home/niko/Documents/post-api/.serverless/views-api.zip",
+        "artifactDirectoryName": "serverless/views-api/dev/1653612672696-2022-05-27T00:51:12.696Z"
       },
       "functions": {
         "$ref": "$[\"service\"][\"functions\"]"
@@ -1253,10 +750,10 @@
     },
     "layers": {},
     "isDashboardMonitoringPreconfigured": false,
-    "artifact": "/home/niko/Documents/post-api/.serverless/post-api.zip"
+    "artifact": "/home/niko/Documents/post-api/.serverless/views-api.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/post-api/dev/1652808330654-2022-05-17T17:25:30.654Z",
-    "artifact": "post-api.zip"
+    "artifactDirectoryName": "serverless/views-api/dev/1653612672696-2022-05-27T00:51:12.696Z",
+    "artifact": "views-api.zip"
   }
 }

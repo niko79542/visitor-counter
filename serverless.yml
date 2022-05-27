@@ -1,4 +1,4 @@
-service: post-api
+service: views-api
 
 provider:
   name: aws
@@ -21,43 +21,25 @@ package:
     - venv/**
 
 functions:
-  create:
-    handler: handler.create
-    events:
-      - http:
-          path: posts/create
-          method: post
   get:
     handler: handler.get
     events:
       - http:
-          path: posts/get
-          method: get
-  all:
-    handler: handler.all
-    events:
-      - http:
-          path: posts/all
+          path: get_views
           method: get
   update:
     handler: handler.update
     events:
       - http:
-          path: posts/update
+          path: put_view
           method: put
-  delete:
-    handler: handler.delete
-    events:
-      - http:
-          path: posts/delete
-          method: delete
 
 resources: 
     Resources:
-      postsTable: 
+      viewsTable: 
         Type: AWS::DynamoDB::Table
         Properties:
-          TableName: posts
+          TableName: views
           AttributeDefinitions:
             - AttributeName: id
               AttributeType: N
@@ -70,6 +52,7 @@ resources:
   
 plugins:
 - serverless-python-requirements
+- serverless-sam
 
 custom:
   pythonRequirements:
