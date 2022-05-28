@@ -7,8 +7,6 @@ dynamodb = boto3.client("dynamodb")
 table_name = "views"
 
 def get(event, context):
-    print(event)
-    # Set the default error response
     response = {
         "statusCode": 500,
         "body": "An error occured while getting view."
@@ -19,7 +17,6 @@ def get(event, context):
 
     if "Item" in view_query:
         view = view_query["Item"]
-        print(view)
         response = {
             "statusCode": 200,
             "headers": {
@@ -34,8 +31,6 @@ def get(event, context):
 
 
 def update(event, context):
-    print(event)
-
     response = {
         "statusCode": 500,
         "body": f"An error occured while updating view"

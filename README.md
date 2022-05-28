@@ -4,7 +4,7 @@ We will use Lambda, API Gateway, and dynamodb in order to build a simple serverl
 
 ### What is Lambda?  API Gateway? dynamodb?
 
-dynamodb is a NoSQL flavor by AWS that is a fully managed, highly available distributed database.  You can scale up and down easily, and 
+dynamodb is a NoSQL flavor by AWS that is a fully managed, highly available distributed database.  You can scale up and down easily.
 
 Lambda is a way to setup serverless functions without having to manage or provision servers.  We can use Lambda to express what shape of data we'd like to retrieve from Dynamo.
 
