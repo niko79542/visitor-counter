@@ -1,3 +1,8 @@
+### Live Frontend
+
+[Live](niko-skoularikis.link) 
+[Code](github.com/niko79542/resume)
+
 ### View Counter API
 
 We will use Lambda, API Gateway, and dynamodb in order to build a simple serverless view counter for our resume website. 
