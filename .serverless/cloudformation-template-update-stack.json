@@ -179,7 +179,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/views-api/dev/1653677115438-2022-05-27T18:45:15.438Z/views-api.zip"
+          "S3Key": "serverless/views-api/dev/1653873753095-2022-05-30T01:22:33.095Z/views-api.zip"
         },
         "Handler": "handler.get",
         "Runtime": "python3.8",
@@ -204,7 +204,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/views-api/dev/1653677115438-2022-05-27T18:45:15.438Z/views-api.zip"
+          "S3Key": "serverless/views-api/dev/1653873753095-2022-05-30T01:22:33.095Z/views-api.zip"
         },
         "Handler": "handler.update",
         "Runtime": "python3.8",
@@ -222,24 +222,24 @@
         "UpdateLogGroup"
       ]
     },
-    "GetLambdaVersionUn8i8SGM4wPL64MO7J9dMOknwlp0RWRfZsXLios": {
+    "GetLambdaVersionBpT4xdcQEuUEGM0DMOTxPjLaxMLFCUDH3YiRrNRo": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "GetLambdaFunction"
         },
-        "CodeSha256": "kBk1VE6zAppcoDW+GUiDwxKaGBNTYkHHBv0rikng1Us="
+        "CodeSha256": "08qRlOuM1edh+1yU6KQQ8mCe0Z2FC7QxX5GgxM8IZuE="
       }
     },
-    "UpdateLambdaVersionwNYyPvxeXIRYc7EFpsaOWEvQyTNGhNocK5635BKj8": {
+    "UpdateLambdaVersionl1w4gITu4aelSFqfXAlUubzM7lzVjamSnde0aKJD9MA": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "UpdateLambdaFunction"
         },
-        "CodeSha256": "kBk1VE6zAppcoDW+GUiDwxKaGBNTYkHHBv0rikng1Us="
+        "CodeSha256": "08qRlOuM1edh+1yU6KQQ8mCe0Z2FC7QxX5GgxM8IZuE="
       }
     },
     "ApiGatewayRestApi": {
@@ -279,6 +279,96 @@
           ]
         },
         "PathPart": "put_view",
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        }
+      }
+    },
+    "ApiGatewayMethodGetviewsOptions": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "AuthorizationType": "NONE",
+        "HttpMethod": "OPTIONS",
+        "MethodResponses": [
+          {
+            "StatusCode": "200",
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Origin": true,
+              "method.response.header.Access-Control-Allow-Headers": true,
+              "method.response.header.Access-Control-Allow-Methods": true
+            },
+            "ResponseModels": {}
+          }
+        ],
+        "RequestParameters": {},
+        "Integration": {
+          "Type": "MOCK",
+          "RequestTemplates": {
+            "application/json": "{statusCode:200}"
+          },
+          "ContentHandling": "CONVERT_TO_TEXT",
+          "IntegrationResponses": [
+            {
+              "StatusCode": "200",
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET'"
+              },
+              "ResponseTemplates": {
+                "application/json": ""
+              }
+            }
+          ]
+        },
+        "ResourceId": {
+          "Ref": "ApiGatewayResourceGetviews"
+        },
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        }
+      }
+    },
+    "ApiGatewayMethodPutviewOptions": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "AuthorizationType": "NONE",
+        "HttpMethod": "OPTIONS",
+        "MethodResponses": [
+          {
+            "StatusCode": "200",
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Origin": true,
+              "method.response.header.Access-Control-Allow-Headers": true,
+              "method.response.header.Access-Control-Allow-Methods": true
+            },
+            "ResponseModels": {}
+          }
+        ],
+        "RequestParameters": {},
+        "Integration": {
+          "Type": "MOCK",
+          "RequestTemplates": {
+            "application/json": "{statusCode:200}"
+          },
+          "ContentHandling": "CONVERT_TO_TEXT",
+          "IntegrationResponses": [
+            {
+              "StatusCode": "200",
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,PUT'"
+              },
+              "ResponseTemplates": {
+                "application/json": ""
+              }
+            }
+          ]
+        },
+        "ResourceId": {
+          "Ref": "ApiGatewayResourcePutview"
+        },
         "RestApiId": {
           "Ref": "ApiGatewayRestApi"
         }
@@ -376,7 +466,7 @@
         "UpdateLambdaPermissionApiGateway"
       ]
     },
-    "ApiGatewayDeployment1653677099267": {
+    "ApiGatewayDeployment1653873738515": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -385,6 +475,8 @@
         "StageName": "dev"
       },
       "DependsOn": [
+        "ApiGatewayMethodGetviewsOptions",
+        "ApiGatewayMethodPutviewOptions",
         "ApiGatewayMethodGetviewsGet",
         "ApiGatewayMethodPutviewPut"
       ]
@@ -498,7 +590,7 @@
     "GetLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "GetLambdaVersionUn8i8SGM4wPL64MO7J9dMOknwlp0RWRfZsXLios"
+        "Ref": "GetLambdaVersionBpT4xdcQEuUEGM0DMOTxPjLaxMLFCUDH3YiRrNRo"
       },
       "Export": {
         "Name": "sls-views-api-dev-GetLambdaFunctionQualifiedArn"
@@ -507,7 +599,7 @@
     "UpdateLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "UpdateLambdaVersionwNYyPvxeXIRYc7EFpsaOWEvQyTNGhNocK5635BKj8"
+        "Ref": "UpdateLambdaVersionl1w4gITu4aelSFqfXAlUubzM7lzVjamSnde0aKJD9MA"
       },
       "Export": {
         "Name": "sls-views-api-dev-UpdateLambdaFunctionQualifiedArn"
