@@ -123,6 +123,7 @@ Here are instructions to deploy to AWS.
 ```bash
 $ sls deploy
 ```
+
 ### Run python unittest
 
 ```bash
