@@ -116,6 +116,7 @@ Since we are planning to hit our API from an external server, we need to enable 
 
 Also allow preflight requests by adding `cors: true` to each of your lambda functions in the `serverless.yml`.
 
+
 ### Deploy to AWS 
 
 Here are instructions to deploy to AWS.
