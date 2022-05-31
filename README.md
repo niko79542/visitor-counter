@@ -121,5 +121,14 @@ Also allow preflight requests by adding `cors: true` to each of your lambda func
 
 Here are instructions to deploy to AWS.
 
-$ sls deploy 
+```bash
+$ sls deploy
+```
+
+### Run python unittest
+
+```bash
+$ python -m unittest discover -p "*.py" > results.txt
+```
+
 
