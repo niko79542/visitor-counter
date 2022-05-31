@@ -130,5 +130,3 @@ $ sls deploy
 ```bash
 $ python -m unittest discover -p "*.py" > results.txt
 ```
-
-
