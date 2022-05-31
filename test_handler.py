@@ -21,4 +21,4 @@ class calculationTest(unittest.TestCase):
         data = json.loads(get_additional_view["body"])
         additional_view = data["views"]
 
-        self.assertEqual(self.views + 2, additional_view)
+        self.assertEqual(self.views + 1, additional_view)
